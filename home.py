@@ -1,6 +1,6 @@
 import streamlit as st
 
-
+st.write("YESSS")
 def main_home() :
     from app.home.theme import Theme_fond
     Theme_fond()

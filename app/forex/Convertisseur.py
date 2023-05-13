@@ -1,11 +1,6 @@
 import streamlit as st
 import pandas as pd
 import requests
-import configparser
-config = configparser.ConfigParser()
-config.read('config.txt')
-api_key = config.get('DEFAULT', 'API_KEY_CONVERTISSEUR')
-
 
 from app.home.theme import Theme_fond
 Theme_fond()
@@ -36,7 +31,7 @@ def main_convertisseur():
     # loop through the selected quote currencies
     for quote_currency in quote_currencies:
         url = f"https://api.apilayer.com/exchangerates_data/latest?base={base_currency}&symbols={quote_currency}"
-        headers = {"apikey": api_key}
+        headers = {"apikey": "1JsH6GngIdk25rmagvUtCQIh8MeZPU52"}
         response = requests.get(url, headers=headers)
         result = response.json()
         rate = result["rates"][quote_currency]

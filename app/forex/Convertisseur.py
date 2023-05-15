@@ -1,15 +1,18 @@
 import streamlit as st
 import pandas as pd
 import requests
+import re
 
 from app.home.theme import Theme_fond
 Theme_fond()
 
 
-import re
-import requests
-import pandas as pd
-import streamlit as st
+
+with open('config.txt') as config_file:
+    for line in config_file:
+        if line.startswith("api_key"):
+            api_key = line.split("=")[1].strip()
+
 
 def main_convertisseur():
     # read the country and currency code mapping into a pandas dataframe
@@ -42,7 +45,7 @@ def main_convertisseur():
     # loop through the selected quote currencies
     for quote_currency in quote_currencies:
         url = f"https://api.apilayer.com/exchangerates_data/latest?base={devise}&symbols={quote_currency}"
-        headers = {"apikey": "1JsH6GngIdk25rmagvUtCQIh8MeZPU52"}
+        headers = {"apikey": api_key}
         response = requests.get(url, headers=headers)
         result = response.json()
 

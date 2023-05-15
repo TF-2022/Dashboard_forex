@@ -8,11 +8,6 @@ Theme_fond()
 
 
 
-with open('config.txt') as config_file:
-    for line in config_file:
-        if line.startswith("api_key"):
-            api_key = line.split("=")[1].strip()
-
 
 def main_convertisseur():
     # read the country and currency code mapping into a pandas dataframe
@@ -45,7 +40,7 @@ def main_convertisseur():
     # loop through the selected quote currencies
     for quote_currency in quote_currencies:
         url = f"https://api.apilayer.com/exchangerates_data/latest?base={devise}&symbols={quote_currency}"
-        headers = {"apikey": api_key}
+        headers = {"apikey": "1JsH6GngIdk25rmagvUtCQIh8MeZPU52"}
         response = requests.get(url, headers=headers)
         result = response.json()
 
@@ -66,6 +61,10 @@ def main_convertisseur():
 
     # display the result
     st.write(df_result)
+
+    
+
+
 
 if __name__ == '__main__':
     main_convertisseur()

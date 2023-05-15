@@ -92,7 +92,8 @@ def main_comparaison_pouvoir_achat():
 ###################################### MAIN
 def prix_recement_ajouter() :
     url = 'https://www.numbeo.com/cost-of-living/'
-    response = requests.get(url)
+    headers = {'Accept-Language': 'fr-FR'}
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
 
     items = soup.find_all('div', {'class': 'nice_items_container'})
@@ -105,12 +106,12 @@ def prix_recement_ajouter() :
                  
 ### MAIN *************************
 def main_pouvoir_monnaie_achat() :
-    tab1, tab2 = st.tabs(["Prix récemment ajouter", "Pouvoir d'achat"])
+    tab1, tab2 = st.tabs(["Pouvoir d'achat","Prix récemment ajouter"])
     with tab1 :
-        prix_recement_ajouter()
+        main_comparaison_pouvoir_achat()
         
     with tab2 :
-        main_comparaison_pouvoir_achat()
+        prix_recement_ajouter()
         
 if __name__ == '__main__':
     main_pouvoir_monnaie_achat()
@@ -141,6 +142,4 @@ def translate_text(text, to_lang):
     return response.json()
 #translated_line = translate_text(line, "fr") # traduire la ligne en français
 #st.write(translated_line)
-
-
 

@@ -14,7 +14,8 @@ Copyright (c) 2023 TF-2022. All rights reserved.
 """
 
 import streamlit as st
-
+st.set_page_config(page_title= "Home",
+                   page_icon= "🏡")
 st.title("Dashboard Forex")
 st.warning("Page en construction")
 
